@@ -103,15 +103,15 @@ public class JKDefaultView: UIView {
         case .SUCCESS:
             imageIcon.image = loadImageBundle(named: "success-icon")
             textLabel.text = "Success"
-            baseView.backgroundColor = UIColor(red: 35.0/255.0, green: 160.0/255.0, blue: 73.0/255.0, alpha: 1)
+            baseView.backgroundColor = UIColor(red:81/255.0, green:211/255.0, blue:103/255.0, alpha: 1)
         case .WARNING:
             imageIcon.image = loadImageBundle(named: "warning-icon")
             textLabel.text = "Warning"
-            baseView.backgroundColor = UIColor(red: 249.0/255.0, green: 169.0/255.0, blue: 69.0/255.0, alpha: 1)
+            baseView.backgroundColor = UIColor(red:0.874, green:0.352, blue:0.164, alpha:1)
         case .FAILED:
             imageIcon.image = loadImageBundle(named: "fail-icon")
             textLabel.text = "Failed"
-            baseView.backgroundColor = UIColor(red: 67.0/255.0, green: 69.0/255.0, blue: 80.0/255.0, alpha: 1)
+            baseView.backgroundColor = UIColor(red:226/255.0, green:35/255.0, blue:60/255.0, alpha: 1)
         }
     }
     
