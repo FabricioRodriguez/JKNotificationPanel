@@ -26,8 +26,25 @@ public class JKDefaultView: UIView {
     var imageIcon:UIImageView!
     var textLabel:UILabel!
     var baseView:UIView!
-    
-    
+    var topPadding: CGFloat! = 0
+
+    init(frame : CGRect , withTopPadding : CGFloat){
+        super.init(frame: frame)
+        self.topPadding = withTopPadding
+        imageIcon = UIImageView(frame: CGRectMake(VERTICAL_SPACE, (HORIZONTAL_SPACE + self.topPadding), ICON_WIDTH, ICON_HEIGHT))
+        imageIcon.backgroundColor = UIColor.clearColor()
+        
+        let textLabelX = VERTICAL_SPACE + ICON_WIDTH + VERTICAL_SPACE
+        textLabel = UILabel(frame: CGRectMake(textLabelX, (HORIZONTAL_SPACE + self.topPadding), frame.width - textLabelX - HORIZONTAL_SPACE, 26))
+        textLabel.userInteractionEnabled = true
+        textLabel.textColor = UIColor.whiteColor()
+        baseView = UIView(frame: frame)
+        baseView.backgroundColor = UIColor(red: 35.0/255.0, green: 160.0/255.0, blue: 73.0/255.0, alpha: 1)
+        baseView.addSubview(imageIcon)
+        baseView.addSubview(textLabel)
+        self.addSubview(baseView)
+    }
+
     override init (frame : CGRect) {
         
         super.init(frame : frame)
@@ -75,9 +92,9 @@ public class JKDefaultView: UIView {
         textLabel.numberOfLines = 0
         textLabel.sizeToFit()
         
-        textLabel.frame.origin.y = HORIZONTAL_SPACE + 2
+        textLabel.frame.origin.y = HORIZONTAL_SPACE + 2 + self.topPadding
         
-        let height = textLabel.frame.height
+        let height = textLabel.frame.height + self.topPadding
         var frameHeight = (VERTICAL_SPACE * 2) + height
         if frameHeight < 44 { frameHeight = 44 }
         

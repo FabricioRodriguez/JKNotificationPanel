@@ -73,6 +73,22 @@ public class JKNotificationPanel: NSObject {
         return view
     }
 
+    public func defaultView(status:JKType, message:String?, size:CGSize? = nil, topPadding : CGFloat) -> JKDefaultView {
+
+        var height:CGFloat = defaultViewHeight
+        var width:CGFloat = UIScreen.mainScreen().bounds.size.width
+
+        if let size = size {
+            height = size.height + topPadding
+            width = size.width
+        }
+        let view = JKDefaultView(frame: CGRectMake(0, 0, width,  height), withTopPadding: topPadding)
+        view.setPanelStatus(status)
+        view.setMessage(message)
+        
+        return view
+    }
+
 
     public func addPanelDidTapAction(action:()->Void ) {
         tapAction = action
@@ -101,8 +117,9 @@ public class JKNotificationPanel: NSObject {
 
     public func showNotify(withStatus status: JKType, inView view: UIView, message text:String? = nil, belowStatusBar : Bool) {
         verticalSpace = 0
-        let panelSize = CGSize(width: view.frame.size.width, height: defaultViewHeight  + 22 )
-        let defaultView = self.defaultView(status,message: text,size: panelSize)
+        let panelSize = CGSize(width: view.frame.size.width, height: defaultViewHeight )
+        let topPadding = UIApplication.sharedApplication().statusBarFrame.size.height
+        let defaultView = self.defaultView(status,message: text,size: panelSize, topPadding: topPadding)
         self.showNotify(withView: defaultView, inView: view)
     }
 
